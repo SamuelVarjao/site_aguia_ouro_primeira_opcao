@@ -1,26 +1,647 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/* ---------------------------------------------------------------------------
+   Tokens de marca — Farmácia Águia de Ouro
+   Direção visual: caderno de farmácia. Papel claro, desenhos em giz, blocos
+   pastel pontuais e painéis marinho que funcionam como lousa.
+   --------------------------------------------------------------------------- */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* As variáveis --font-* vêm do next/font, aplicadas no <html>. */
+  --font-sans: var(--font-dm-sans), "Helvetica Neue", Arial, sans-serif;
+  --font-serif: var(--font-fraunces), Georgia, "Times New Roman", serif;
 }
 
-@media (prefers-color-scheme: dark) {
+@theme {
+  /* Navy — cor estrutural. #04063e é o valor amostrado do logo. */
+  --color-navy-900: #04063e;
+  --color-navy-700: #161c5e;
+  --color-navy-600: #232a78;
+  --color-navy-050: #eeeff6;
+
+  /* Lousa: o marinho da marca, levemente aberto para o giz branco respirar. */
+  --color-board: #0a1150;
+
+  /* Dourado em rampa (mesmo matiz):
+       gold-400 -> preenchimentos e texto SOBRE NAVY  (7,85:1)
+       gold-600 -> texto SOBRE CLARO e bordas         (4,68:1 no branco) */
+  --color-gold-400: #bfa364;
+  --color-gold-600: #8a7138;
+
+  /* Pastéis — os três "quadrados" de fundo. Texto navy passa AAA em todos. */
+  --color-pastel-navy: #dfe4f3;
+  --color-pastel-gold: #f2e4bd;
+  --color-pastel-gray: #e8e6e0;
+
+  /* Superfícies */
+  --color-paper: #fbf9f4;
+  --color-cream: #fbf9f4;
+  --color-white: #ffffff;
+
+  /* Bordas */
+  --color-border-subtle: #e2ded3;
+  --color-border-strong: #232a78;
+
+  /* Sombras — sempre com tinta navy */
+  --shadow-sm: 0 1px 3px rgba(4, 6, 62, 0.08);
+  --shadow-md: 0 4px 12px rgba(4, 6, 62, 0.1);
+  --shadow-lg: 0 10px 28px rgba(4, 6, 62, 0.12);
+
+  /* Raios — discretos: a referência é papel, não app. */
+  --radius-button: 6px;
+  --radius-card: 10px;
+  --radius-pill: 999px;
+}
+
+:root {
+  --duration-fast: 120ms;
+  --duration-base: 200ms;
+  --duration-slow: 320ms;
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  /* Passa um pouco do ponto e volta: dá o "quique" das entradas. */
+  --ease-spring: cubic-bezier(0.34, 1.45, 0.64, 1);
+  --duration-reveal: 950ms;
+  --nav-height: 76px;
+}
+
+@media (min-width: 768px) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --nav-height: 88px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-navy-900);
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.65;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Foco sempre visível. Nunca remover. */
+  :where(a, button, input, textarea, select, [tabindex]):focus-visible {
+    outline: 3px solid var(--color-navy-600);
+    outline-offset: 2px;
+  }
+
+  .surface-dark :where(a, button, input, [tabindex]):focus-visible {
+    outline-color: var(--color-gold-400);
+  }
+}
+
+@layer components {
+  .container-page {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: 20px;
+  }
+
+  @media (min-width: 768px) {
+    .container-page {
+      padding-inline: 32px;
+    }
+  }
+
+  .measure {
+    max-width: 60ch;
+  }
+
+  /* Escala tipográfica. Títulos em serifa leve, como caderno impresso;
+     hierarquia por tamanho, nunca por peso. */
+  .t-display,
+  .t-h1,
+  .t-h2,
+  .t-h3,
+  .t-quote {
+    font-family: var(--font-serif);
+    font-weight: 380;
+    font-variation-settings: "SOFT" 50, "WONK" 0;
+  }
+
+  .t-display {
+    font-size: clamp(2.375rem, 1.25rem + 4.2vw, 4.25rem);
+    line-height: 1.04;
+    letter-spacing: -0.025em;
+  }
+  .t-h1 {
+    font-size: clamp(2.25rem, 1.3rem + 3.2vw, 3.5rem);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+  }
+  .t-h2 {
+    font-size: clamp(1.875rem, 1.25rem + 2.1vw, 2.75rem);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+  }
+  .t-h3 {
+    font-size: 1.375rem;
+    line-height: 1.25;
+    letter-spacing: -0.005em;
+  }
+  .t-quote {
+    font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.125rem);
+    line-height: 1.22;
+    font-style: italic;
+  }
+  .t-lead {
+    font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem);
+    line-height: 1.65;
+  }
+  .t-body {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  .t-small {
+    font-size: 0.9375rem;
+    line-height: 1.55;
+  }
+
+  /* Numeral dos passos: serifa itálica, como anotação à mão. */
+  .t-numeral {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 340;
+    font-size: 3.5rem;
+    line-height: 1;
+  }
+
+  /* Rótulo em caixa alta bem espaçada — a assinatura tipográfica da
+     referência. Pequeno, então peso 600. */
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.24em;
+    line-height: 1.5;
+    color: var(--color-gold-600);
+  }
+
+  .eyebrow-light {
+    color: var(--color-gold-400);
+  }
+
+  .label {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    line-height: 1.4;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 50px;
+    padding: 13px 26px;
+    border-radius: var(--radius-button);
+    border: 1.5px solid transparent;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    line-height: 1.2;
+    text-align: center;
+    transition:
+      box-shadow var(--duration-base) var(--ease),
+      transform var(--duration-base) var(--ease),
+      scale var(--duration-fast) var(--ease),
+      background-color var(--duration-base) var(--ease),
+      border-color var(--duration-base) var(--ease),
+      color var(--duration-base) var(--ease);
+  }
+  .btn:hover {
+    transform: translateY(-1px);
+  }
+  .btn:active {
+    transform: translateY(0);
+  }
+
+  .btn-gold {
+    background-color: var(--color-gold-400);
+    border-color: var(--color-gold-400);
+    color: var(--color-navy-900);
+  }
+  .btn-gold:hover {
+    background-color: #cdb47a;
+    box-shadow: 0 6px 18px rgba(138, 113, 56, 0.28);
+  }
+
+  .btn-navy {
+    background-color: var(--color-navy-900);
+    border-color: var(--color-navy-900);
+    color: var(--color-white);
+  }
+  .btn-navy:hover {
+    background-color: var(--color-navy-700);
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn-ghost-navy {
+    background-color: transparent;
+    border-color: var(--color-navy-900);
+    color: var(--color-navy-900);
+  }
+  .btn-ghost-navy:hover {
+    background-color: var(--color-navy-900);
+    color: var(--color-white);
+  }
+
+  .btn-ghost-light {
+    background-color: transparent;
+    border-color: rgba(255, 255, 255, 0.6);
+    color: var(--color-white);
+  }
+  .btn-ghost-light:hover {
+    border-color: var(--color-white);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .btn-nav {
+    min-height: 42px;
+    padding: 9px 16px;
+    font-size: 0.75rem;
+  }
+
+  /* Até ~400px o cabeçalho leva logo + Blog + Enviar receita: os botões
+     encolhem para os três caberem numa tela de 320px. */
+  @media (max-width: 400px) {
+    .btn-nav {
+      padding: 9px 11px;
+      font-size: 0.6875rem;
+      letter-spacing: 0.1em;
+    }
+  }
+
+  /* Link de texto com sublinhado que "risca" ao passar o mouse. */
+  .link-chalk {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0 1.5px;
+    padding-bottom: 2px;
+    transition: background-size var(--duration-slow) var(--ease);
+  }
+  .link-chalk:hover,
+  .link-chalk[aria-current="page"] {
+    background-size: 100% 1.5px;
+  }
+
+  /* Campos de formulário */
+  .field {
+    width: 100%;
+    border-radius: var(--radius-button);
+    border: 1.5px solid var(--color-border-subtle);
+    background-color: var(--color-white);
+    padding: 12px 16px;
+    color: var(--color-navy-900);
+    outline: none;
+    transition: border-color var(--duration-base) var(--ease);
+  }
+  .field::placeholder {
+    color: rgba(4, 6, 62, 0.45);
+  }
+  .field:focus-visible {
+    border-color: var(--color-navy-600);
+  }
+
+  /* Painel de lousa: marinho com uma leve poeira de giz. */
+  .board {
+    position: relative;
+    isolation: isolate;
+    background-color: var(--color-board);
+    color: var(--color-white);
+  }
+  .board::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.1;
+    background-image:
+      radial-gradient(ellipse at 20% 15%, rgba(255, 255, 255, 0.55), transparent 55%),
+      radial-gradient(ellipse at 85% 90%, rgba(255, 255, 255, 0.35), transparent 50%);
+  }
+}
+
+/* Com movimento reduzido, transições zeradas. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Movimento
+   As regras de revelação só valem com a classe .reveal-on no <html>, e quem a
+   põe é o SiteInteractions, DEPOIS de marcar como revelado tudo o que já está
+   na tela. Assim nada visível é escondido esperando o React: antes, com a
+   classe posta no primeiro paint, recarregar no meio da home deixava a tela
+   em branco até a hidratação terminar. Sem JavaScript nada é escondido.
+   O .js (script inline no layout) ficou só para a entrada do hero.
+   --------------------------------------------------------------------------- */
+.reveal-on [data-reveal] {
+  opacity: 0;
+  transform: translateY(44px);
+  transition:
+    opacity 700ms var(--ease-out),
+    transform var(--duration-reveal) var(--ease-spring);
+}
+
+.js [data-reveal="left"] {
+  transform: translateX(-56px) rotate(-1.5deg);
+}
+
+.js [data-reveal="right"] {
+  transform: translateX(56px) rotate(1.5deg);
+}
+
+.js [data-reveal="scale"] {
+  transform: translateY(32px) scale(0.9);
+}
+
+.reveal-on [data-reveal][data-revealed="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Desenhos dentro de um bloco revelado entram "carimbados": começam menores
+   e tortos e assentam com um leve quique. Usa as propriedades scale/rotate
+   (e não transform) para não brigar com a flutuação nem com a inclinação que
+   cada desenho já tem: enquanto o bloco está escondido esta regra vence; ao
+   revelar, volta a valer a do próprio elemento e a transição anima até ela. */
+.drawing,
+.step-board {
+  transition:
+    scale 1000ms var(--ease-spring) 180ms,
+    rotate 1000ms var(--ease-spring) 180ms,
+    transform var(--duration-slow) var(--ease);
+}
+
+.reveal-on [data-reveal]:not([data-revealed="true"]) .drawing {
+  scale: 0.7;
+  rotate: -14deg;
+}
+
+.reveal-on [data-reveal]:not([data-revealed="true"]) .step-board {
+  scale: 0.8;
+  rotate: 9deg;
+}
+
+/* Toque no celular: sem hover, o cartão responde ao dedo. */
+@media (hover: none) {
+  .lift:active,
+  .btn:active {
+    scale: 0.97;
+  }
+}
+
+/* Entrada do hero: roda no load, sem esperar scroll. */
+.js .hero-enter {
+  opacity: 0;
+  animation: enter-up 700ms var(--ease-out) forwards;
+}
+
+@keyframes enter-up {
+  from {
+    opacity: 0;
+    transform: translateY(36px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Desenhos flutuam bem devagar, como papel sobre a mesa. */
+.float-slow {
+  animation: float 7s ease-in-out infinite;
+}
+.float-slower {
+  animation: float 9s ease-in-out 1.2s infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--r, 0deg));
+  }
+  50% {
+    transform: translateY(-14px) rotate(calc(var(--r, 0deg) + 2deg));
+  }
+}
+
+/* Traço de giz que se desenha ao entrar na tela. */
+.reveal-on [data-reveal] .chalk-draw path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 900ms var(--ease-out) 250ms;
+}
+.reveal-on [data-reveal][data-revealed="true"] .chalk-draw path {
+  stroke-dashoffset: 0;
+}
+
+/* Barra fixa: papel translúcido; ganha borda e sombra ao sair do topo. */
+.nav-bar {
+  background-color: rgba(251, 249, 244, 0.92);
+  backdrop-filter: saturate(1.2) blur(8px);
+  -webkit-backdrop-filter: saturate(1.2) blur(8px);
+  border-bottom: 1px solid transparent;
+  transition:
+    box-shadow var(--duration-slow) var(--ease),
+    border-color var(--duration-slow) var(--ease);
+}
+
+.nav-bar[data-scrolled="true"] {
+  border-bottom-color: var(--color-border-subtle);
+  box-shadow: 0 6px 24px rgba(4, 6, 62, 0.06);
+}
+
+/* Fotos (só nas páginas internas): a moldura sobe, a imagem aproxima de leve. */
+.photo-frame {
+  transition:
+    box-shadow var(--duration-base) var(--ease),
+    transform var(--duration-base) var(--ease);
+}
+
+.photo-frame:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.photo-frame img {
+  transition: transform var(--duration-slow) var(--ease);
+}
+
+.photo-frame:hover img {
+  transform: scale(1.04);
+}
+
+/* Cartões que levantam de leve ao passar o mouse. */
+.lift {
+  transition:
+    transform var(--duration-base) var(--ease),
+    box-shadow var(--duration-base) var(--ease);
+}
+.lift:hover {
+  transform: translateY(-3px) rotate(var(--r, 0deg));
+  box-shadow: var(--shadow-md);
+}
+
+/* Passos do "como pedir": o número gira um pouco sob o ponteiro. */
+.step .step-board {
+  transition:
+    scale 1000ms var(--ease-spring) 180ms,
+    rotate 1000ms var(--ease-spring) 180ms,
+    transform var(--duration-slow) var(--ease);
+}
+.step:hover .step-board {
+  transform: rotate(-1.5deg) translateY(-3px);
+}
+
+/* Faixa de depoimentos rolável no mobile, sem barra visível. */
+.snap-row {
+  scrollbar-width: none;
+}
+.snap-row::-webkit-scrollbar {
+  display: none;
+}
+
+/* A newsletter da home avança sobre o rodapé, como na referência. */
+body:has(.overlap-footer) footer {
+  padding-top: 11rem;
+}
+
+@media (min-width: 768px) {
+  body:has(.overlap-footer) footer {
+    padding-top: 13rem;
+  }
+}
+
+/* Botão flutuante do WhatsApp */
+.fab {
+  animation: fab-in 480ms var(--ease-out) 900ms both;
+  transition:
+    transform var(--duration-base) var(--ease),
+    box-shadow var(--duration-base) var(--ease);
+}
+
+.fab:hover {
+  transform: scale(1.06);
+  box-shadow: 0 14px 34px rgba(4, 6, 62, 0.34);
+}
+
+.fab:active {
+  transform: scale(1);
+}
+
+@keyframes fab-in {
+  from {
+    opacity: 0;
+    transform: scale(0.7) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fab-ring {
+  animation: fab-pulse 3.2s var(--ease-out) 1.6s infinite;
+}
+
+@keyframes fab-pulse {
+  0% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  70%,
+  100% {
+    opacity: 0;
+    transform: scale(1.65);
+  }
+}
+
+.fab-bubble {
+  animation: bubble-in 420ms var(--ease-out) 1500ms both;
+}
+
+@keyframes bubble-in {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fab-bubble-text {
+  animation: bubble-swap 420ms var(--ease-out) both;
+}
+
+@keyframes bubble-swap {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Com movimento reduzido, tudo aparece pronto e nada fica em loop. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on [data-reveal],
+  .js .hero-enter {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .reveal-on [data-reveal] .chalk-draw path {
+    stroke-dashoffset: 0 !important;
+  }
+
+  .float-slow,
+  .float-slower,
+  .fab,
+  .fab-ring,
+  .fab-bubble,
+  .fab-bubble-text {
+    animation: none !important;
+  }
+
+  .fab-ring {
+    display: none;
+  }
 }

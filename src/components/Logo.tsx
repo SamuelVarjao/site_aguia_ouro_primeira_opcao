@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { url } from "@/lib/base-path";
 
 type Props = {
   /** "nav" na barra clara; "footer" dentro de um selo de papel sobre o navy. */
@@ -15,7 +16,7 @@ export default function Logo({ size = "nav" }: Props) {
 
   const img = (
     <Image
-      src="/img/logo-marca.png"
+      src={url("/img/logo-marca.png")}
       alt="Farmácia Águia de Ouro, farmácia de manipulação"
       width={900}
       height={649}

@@ -1,6 +1,7 @@
 import Chalk from "./Chalk";
 import Drawing from "./Drawing";
 import Reveal from "./Reveal";
+import { url } from "@/lib/base-path";
 
 /**
  * História do fundador. Na home, só ilustração: a foto de 1988 fica na página
@@ -79,7 +80,7 @@ export default function Tradition() {
             </p>
 
             <a
-              href="/quem-somos/"
+              href={url("/quem-somos/")}
               data-ga-event="link_institucional"
               data-ga-origem="tradicao-historia"
               className="btn btn-ghost-navy mt-9"

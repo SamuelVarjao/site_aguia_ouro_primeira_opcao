@@ -2,6 +2,10 @@ import type { MetadataRoute } from "next";
 import { WORDPRESS_PATHS } from "@/lib/routes";
 import { SITE_URL } from "@/lib/site";
 
+/** Gerado no build. Necessário para a exportação estática do GitHub Pages,
+ *  e inofensivo na Vercel: o arquivo já era estático. */
+export const dynamic = "force-static";
+
 /**
  * Páginas reconstruídas nativamente aqui — ficam no sitemap com prioridade
  * mais alta que o resto do que ainda mora no WordPress (WORDPRESS_PATHS).

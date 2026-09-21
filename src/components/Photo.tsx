@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { url } from "@/lib/base-path";
 
 type Props = {
   /**
@@ -30,7 +31,7 @@ export default function Photo({
     >
       {src ? (
         <Image
-          src={src}
+          src={url(src)}
           alt={alt}
           fill
           sizes={sizes}

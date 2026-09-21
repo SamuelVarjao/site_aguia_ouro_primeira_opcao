@@ -1,6 +1,7 @@
 import Chalk from "./Chalk";
 import Logo from "./Logo";
 import Reveal from "./Reveal";
+import { url } from "@/lib/base-path";
 import {
   BLOG_URL,
   BUSINESS,
@@ -172,7 +173,7 @@ export default function Footer() {
               {LINKS.map((link) => (
                 <li key={link.label}>
                   <a
-                    href={link.href}
+                    href={url(link.href)}
                     className="link-chalk"
                     data-ga-event={link.gaEvent}
                     data-ga-origem={`rodape-links:${link.label}`}

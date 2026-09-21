@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 import Chalk from "./Chalk";
 import Drawing from "./Drawing";
 import Reveal from "./Reveal";
+import { url } from "@/lib/base-path";
 import { BUSINESS } from "@/lib/site";
 
 type Status = "idle" | "sending" | "success" | "error";
@@ -36,7 +37,7 @@ export default function Newsletter() {
     };
 
     try {
-      const res = await fetch("/api/newsletter/", {
+      const res = await fetch(url("/api/newsletter/"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -156,7 +157,7 @@ export default function Newsletter() {
                     Ao se cadastrar, você concorda em receber e-mails da{" "}
                     {BUSINESS.name}. Veja nossa{" "}
                     <a
-                      href="/politica-de-privacidade/"
+                      href={url("/politica-de-privacidade/")}
                       className="underline underline-offset-4"
                     >
                       política de privacidade

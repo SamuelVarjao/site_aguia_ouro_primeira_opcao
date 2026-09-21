@@ -1,0 +1,67 @@
+# Prévia estática no GitHub Pages.
+#
+# NÃO é o site de produção: como o Pages só entrega arquivos prontos, esta
+# versão sai sem as rotas de API (o formulário de contato e a newsletter não
+# enviam e-mail) e sem os redirecionamentos do WordPress. Na Vercel o site vai
+# completo, sem nenhuma dessas limitações, porque lá a variável GITHUB_PAGES
+# não existe.
+#
+# Para ligar: Settings > Pages > Source: GitHub Actions.
+name: Prévia no GitHub Pages
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Uma publicação por vez; não cancela a que estiver no meio.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      # As rotas de API não existem em exportação estática e derrubariam o
+      # build. Some só aqui, na cópia do CI; o repositório continua com elas.
+      - name: Remover rotas de API da prévia
+        run: rm -rf src/app/api
+
+      - name: Build estático
+        env:
+          GITHUB_PAGES: "true"
+        run: npm run build
+
+      # Sem isso o Pages ignora a pasta _next, que começa com underline.
+      - name: Marcar como site pronto (.nojekyll)
+        run: touch .next-pages/.nojekyll
+
+      # O site pronto sai em .next-pages (distDir do next.config), não em out/.
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .next-pages
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

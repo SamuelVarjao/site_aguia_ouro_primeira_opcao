@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
+import { url } from "@/lib/base-path";
 import { BUSINESS, SITE_URL, STORE_URL } from "@/lib/site";
 
 const TITLE = "Termos de Uso | Farmácia Águia de Ouro";
@@ -87,7 +88,7 @@ export default function TermosDeUsoPage() {
                 responder ao seu contato. Os detalhes de tratamento estão na
                 nossa{" "}
                 <a
-                  href="/politica-de-privacidade/"
+                  href={url("/politica-de-privacidade/")}
                   className="underline-offset-4 hover:underline"
                 >
                   Política de Privacidade

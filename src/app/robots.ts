@@ -1,6 +1,10 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site";
 
+/** Gerado no build. Necessário para a exportação estática do GitHub Pages,
+ *  e inofensivo na Vercel: o arquivo já era estático. */
+export const dynamic = "force-static";
+
 export default function robots(): MetadataRoute.Robots {
   return {
     // Nunca bloquear CSS/JS (_next/static) — impede o Googlebot de renderizar

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import CtaLink from "./CtaLink";
 import Logo from "./Logo";
+import { url } from "@/lib/base-path";
 import { BLOG_URL, WHATSAPP_LINKS } from "@/lib/site";
 
 const LINKS = [
@@ -34,7 +35,7 @@ export default function Nav() {
             {LINKS.map((link) => (
               <li key={link.href}>
                 <a
-                  href={link.href}
+                  href={url(link.href)}
                   data-ga-event="link_institucional"
                   data-ga-origem={`navegacao:${link.label}`}
                   className="link-chalk"

@@ -2,6 +2,7 @@
 
 import { sendGAEvent } from "@next/third-parties/google";
 import { useRef, useState } from "react";
+import { url } from "@/lib/base-path";
 
 type Status = "idle" | "sending" | "success" | "error";
 
@@ -37,7 +38,7 @@ export default function ContactForm() {
     };
 
     try {
-      const res = await fetch("/api/contato/", {
+      const res = await fetch(url("/api/contato/"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

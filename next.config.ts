@@ -85,27 +85,64 @@ const produtosRedirects = Object.entries(
   permanent: true,
 }));
 
+/**
+ * Build estático para o GitHub Pages (`GITHUB_PAGES=true`).
+ *
+ * É uma PRÉVIA, não o site de produção. O Pages só entrega arquivos prontos,
+ * então três coisas ficam de fora e voltam sozinhas na Vercel, onde a
+ * variável não existe:
+ *   - as rotas de API (formulário de contato e newsletter) não são geradas;
+ *   - redirects() e rewrites() não existem em exportação estática, então os
+ *     redirecionamentos do WordPress e o proxy do /blog não valem;
+ *   - a otimização de imagens do Next é desligada.
+ *
+ * O site fica numa subpasta (github.io/<repo>/), daí o basePath. Ele é
+ * repassado ao navegador em NEXT_PUBLIC_BASE_PATH: <Link> e <Image> já o
+ * aplicam sozinhos, mas <a href="/..."> e fetch() precisam do helper
+ * `url()` em src/lib/base-path.ts.
+ */
+const isGithubPages = process.env.GITHUB_PAGES === "true";
+const basePath = isGithubPages ? "/site_aguia_ouro_primeira_opcao" : "";
+
 const nextConfig: NextConfig = {
   trailingSlash: true,
   images: {
     formats: ["image/avif", "image/webp"],
+    ...(isGithubPages ? { unoptimized: true } : {}),
   },
-  async redirects() {
-    return [
-      ...produtosRedirects,
-      { source: "/topico/:path*", destination: PRODUTOS_FALLBACK, permanent: true },
-    ];
-  },
-  async rewrites() {
-    if (!WORDPRESS_ORIGIN || isSelfReferencing) return [];
-    return WORDPRESS_PATHS.flatMap((path) => [
-      { source: `/${path}`, destination: `${WORDPRESS_ORIGIN}/${path}` },
-      {
-        source: `/${path}/:path*`,
-        destination: `${WORDPRESS_ORIGIN}/${path}/:path*`,
-      },
-    ]);
-  },
+  env: { NEXT_PUBLIC_BASE_PATH: basePath },
+  ...(isGithubPages
+    ? {
+        output: "export" as const,
+        basePath,
+        assetPrefix: basePath,
+        // Com output: "export" e distDir próprio, o site pronto sai DIRETO
+        // nesta pasta (não em out/) — é ela que o workflow publica. Ter pasta
+        // separada evita atropelar um `npm run dev` que esteja usando a .next.
+        distDir: ".next-pages",
+      }
+    : {
+        async redirects() {
+          return [
+            ...produtosRedirects,
+            {
+              source: "/topico/:path*",
+              destination: PRODUTOS_FALLBACK,
+              permanent: true,
+            },
+          ];
+        },
+        async rewrites() {
+          if (!WORDPRESS_ORIGIN || isSelfReferencing) return [];
+          return WORDPRESS_PATHS.flatMap((path) => [
+            { source: `/${path}`, destination: `${WORDPRESS_ORIGIN}/${path}` },
+            {
+              source: `/${path}/:path*`,
+              destination: `${WORDPRESS_ORIGIN}/${path}/:path*`,
+            },
+          ]);
+        },
+      }),
 };
 
 export default nextConfig;

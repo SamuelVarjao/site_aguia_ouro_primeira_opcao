@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { url } from "@/lib/base-path";
 
 /**
  * Ilustrações em giz da farmácia.
@@ -44,7 +45,7 @@ export default function Drawing({
 
   return (
     <Image
-      src={`/img/desenhos/${name}.webp`}
+      src={url(`/img/desenhos/${name}.webp`)}
       alt={alt}
       width={width}
       height={height}

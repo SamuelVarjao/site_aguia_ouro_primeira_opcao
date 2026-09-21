@@ -2,6 +2,7 @@ import { ClipboardCheck, FileCheck2, Scale, type LucideIcon } from "lucide-react
 import Chalk from "./Chalk";
 import Drawing from "./Drawing";
 import Reveal from "./Reveal";
+import { url } from "@/lib/base-path";
 
 const POINTS: Array<{ Icon: LucideIcon; title: string; text: string }> = [
   {
@@ -101,7 +102,7 @@ export default function Authority() {
                 vai para o laboratório.
               </p>
               <a
-                href="/quem-somos/"
+                href={url("/quem-somos/")}
                 data-ga-event="link_institucional"
                 data-ga-origem="autoridade-saber-mais"
                 className="btn btn-ghost-light mt-9"

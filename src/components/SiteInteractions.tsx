@@ -3,7 +3,7 @@
 import { sendGAEvent } from "@next/third-parties/google";
 import { useEffect } from "react";
 
-const FAB_MESSAGES = ["Faça já seu orçamento", "Tire suas dúvidas"] as const;
+const FAB_MESSAGES = ["Peça seu orçamento", "Tire suas dúvidas"] as const;
 const FAB_INTERVAL_MS = 5000;
 
 /**

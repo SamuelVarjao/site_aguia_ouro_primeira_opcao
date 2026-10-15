@@ -1,4 +1,9 @@
-import { ClipboardCheck, FileCheck2, Scale, type LucideIcon } from "lucide-react";
+import {
+  ClipboardCheck,
+  FileCheck2,
+  Scale,
+  type LucideIcon,
+} from "lucide-react";
 import Chalk from "./Chalk";
 import Drawing from "./Drawing";
 import Reveal from "./Reveal";
@@ -18,7 +23,7 @@ const POINTS: Array<{ Icon: LucideIcon; title: string; text: string }> = [
   {
     Icon: Scale,
     title: "Registro de cada etapa",
-    text: "Pesagem em balança calibrada, tudo anotado na ordem de manipulação. Qualquer fórmula que saiu daqui pode ser rastreada depois.",
+    text: "Pesagem em balança calibrada e tudo anotado na ordem de manipulação. Se precisar conferir uma fórmula daqui a dois anos, o registro está guardado.",
   },
 ];
 

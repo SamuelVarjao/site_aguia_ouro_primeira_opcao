@@ -7,19 +7,19 @@ import { WHATSAPP_LINKS } from "@/lib/site";
 const STEPS = [
   {
     title: "Fotografe a receita",
-    text: "Uma foto legível já resolve, não precisa de scanner. Se a prescrição tiver mais de uma página, envie todas.",
+    text: "Uma foto legível já resolve, não precisa de scanner. Receita de duas páginas? Mande as duas.",
   },
   {
     title: "Envie pelo WhatsApp",
-    text: "A conversa é direta com a equipe do balcão, de segunda a sábado, no horário da farmácia.",
+    text: "Quem responde é a equipe do balcão, de segunda a sábado, no horário da farmácia.",
   },
   {
     title: "Receba o orçamento",
-    text: "Informamos o valor, o prazo de preparo e as formas de pagamento antes de qualquer coisa ir para o laboratório.",
+    text: "Você vê o valor e o prazo antes. Nada entra na bancada sem o seu ok.",
   },
   {
     title: "Retire ou receba em casa",
-    text: "Entregamos em São Paulo. Você acompanha o preparo pela mesma conversa.",
+    text: "Entregamos em São Paulo, e dá para acompanhar o preparo na mesma conversa.",
   },
 ];
 

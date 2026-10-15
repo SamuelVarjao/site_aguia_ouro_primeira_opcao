@@ -98,7 +98,8 @@ export default function Footer() {
             <div>
               <p className="t-h3">Acompanhe o dia a dia da farmácia</p>
               <p className="t-small mt-1 text-white/70">
-                Bastidores do laboratório, novidades e cuidados com a pele.{" "}
+                Mostramos o laboratório por dentro e o que chega de novo por
+                aqui.{" "}
                 <a
                   href={INSTAGRAM.url}
                   target="_blank"

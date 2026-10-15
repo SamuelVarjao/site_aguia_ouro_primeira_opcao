@@ -46,13 +46,17 @@ export default function Newsletter() {
 
       if (!res.ok) {
         setStatus("error");
-        setErrorMsg(json.error ?? "Não foi possível cadastrar. Tente novamente.");
+        setErrorMsg(
+          json.error ?? "Não foi possível cadastrar. Tente novamente.",
+        );
         return;
       }
 
       setStatus("success");
       form.reset();
-      sendGAEvent("event", "newsletter_cadastro", { origem: "home-newsletter" });
+      sendGAEvent("event", "newsletter_cadastro", {
+        origem: "home-newsletter",
+      });
     } catch {
       setStatus("error");
       setErrorMsg("Sem conexão no momento. Tente novamente em instantes.");
@@ -86,12 +90,11 @@ export default function Newsletter() {
 
             <div>
               <h2 className="t-h2 max-w-[22ch]">
-                Cuidados e novidades direto no seu e-mail
+                Novidades da farmácia no seu e-mail
               </h2>
               <p className="t-body measure mt-3 text-navy-900/75">
-                De vez em quando, mandamos dicas de saúde, cuidados com a pele
-                e novidades da farmácia. Sem spam, e você cancela quando
-                quiser.
+                Escrevemos pouco: quando chega um ativo novo, quando temos uma
+                dica que vale a pena. Para sair da lista, é um clique.
               </p>
 
               {status === "success" ? (
@@ -99,7 +102,7 @@ export default function Newsletter() {
                   role="status"
                   className="t-body mt-6 border-l-4 border-gold-400 bg-paper px-5 py-4"
                 >
-                  Cadastro feito! Em breve você recebe nosso primeiro e-mail.
+                  Pronto, o próximo e-mail que a gente escrever vai para você.
                 </p>
               ) : (
                 <form

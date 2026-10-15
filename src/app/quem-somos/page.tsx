@@ -10,7 +10,7 @@ import { BUSINESS, SITE_URL, WHATSAPP_LINKS } from "@/lib/site";
 
 const TITLE = "Quem Somos | Farmácia Águia de Ouro";
 const DESCRIPTION =
-  "Farmácia de manipulação em São Miguel Paulista desde 1988. Conheça a história, a missão e a equipe por trás de cada fórmula.";
+  "Farmácia de manipulação em São Miguel Paulista desde 1988. A história da farmácia, as farmacêuticas responsáveis e o laboratório onde as fórmulas são preparadas.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -170,10 +170,10 @@ export default function QuemSomosPage() {
                 Onde a sua fórmula é preparada
               </h2>
               <p className="t-body measure mt-6 text-navy-900/80">
-                Antes que qualquer matéria seja pesada, a prescrição passa pela
-                nossa farmacêutica responsável. Ela confere a dose, a forma
-                farmacêutica e se os ativos combinam entre si. Só depois a ordem
-                de manipulação vai para a bancada.
+                A receita passa pela farmacêutica responsável antes de qualquer
+                coisa ser pesada. É ela quem decide se a fórmula vai para a
+                bancada do jeito que foi pedida ou se vale uma ligação para o
+                consultório antes.
               </p>
             </Reveal>
 
@@ -306,8 +306,8 @@ export default function QuemSomosPage() {
             <p className="eyebrow">Balcão</p>
             <h2 className="t-h2 measure mt-4">Equipe</h2>
             <p className="t-lead measure mt-4 text-navy-900/80">
-              São as pessoas que recebem a sua receita, tiram as suas dúvidas e
-              acompanham o pedido até a entrega.
+              No balcão e no WhatsApp, quem atende é a equipe da farmácia. São
+              elas que avisam quando a sua fórmula fica pronta.
             </p>
           </Reveal>
 
@@ -318,7 +318,7 @@ export default function QuemSomosPage() {
                 <Photo
                   src={null}
                   alt=""
-                  hint="Área reservada para foto e bio de um integrante da equipe"
+                  hint="Foto em breve"
                   sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
                   className="aspect-4/5 w-full"
                 />
@@ -361,7 +361,7 @@ export default function QuemSomosPage() {
 
       <CtaBand
         title="Quer conhecer de perto?"
-        lead="Mande a sua receita pelo WhatsApp e converse com a nossa equipe."
+        lead="Mande a sua receita pelo WhatsApp ou apareça no balcão, na Marechal Tito."
         href={WHATSAPP_LINKS.quemSomos}
         origem="quem-somos"
         label="Enviar receita pelo WhatsApp"

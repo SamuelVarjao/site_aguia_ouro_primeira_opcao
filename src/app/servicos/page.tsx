@@ -10,7 +10,7 @@ import { SITE_URL, WHATSAPP_LINKS } from "@/lib/site";
 
 const TITLE = "Serviços | Farmácia Águia de Ouro";
 const DESCRIPTION =
-  "Manipulação dermatológica, hormonal, capilar, pediátrica, ortomolecular, fitoterápica, para emagrecimento, suplementação e desempenho físico. Atendimento farmacêutico e entrega em São Paulo.";
+  "Manipulação dermatológica, hormonal, capilar, pediátrica, ortomolecular, fitoterápica, emagrecimento, suplementação e desempenho físico. Receita conferida por farmacêutica e entrega em São Paulo.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -40,39 +40,39 @@ const jsonLd = {
 const ESPECIALIDADES = [
   {
     title: "Dermatológica",
-    text: "Cremes, séruns e loções com a concentração de ativos que a sua pele precisa, seguindo o que está na receita.",
+    text: "Cremes, séruns e loções na concentração que o dermatologista pediu.",
   },
   {
     title: "Hormonal e ginecológica",
-    text: "Reposição hormonal e fórmulas ginecológicas manipuladas conforme a prescrição, na forma indicada pelo médico.",
+    text: "Reposição hormonal e fórmulas ginecológicas, na forma farmacêutica que o médico indicar.",
   },
   {
     title: "Emagrecimento",
-    text: "Fórmulas para acompanhar o emagrecimento. Essa linha só é manipulada com receita.",
+    text: "Fórmulas para quem está em tratamento de emagrecimento. Essa linha só sai com receita.",
   },
   {
     title: "Ortomolecular",
-    text: "Vitaminas, minerais e antioxidantes nas doses e combinações definidas pelo seu médico ou nutricionista.",
+    text: "Vitaminas, minerais e antioxidantes nas doses que o seu médico ou nutricionista calculou.",
   },
   {
     title: "Capilar",
-    text: "Loções e tônicos para tratamento capilar feitos sob medida, como o minoxidil na concentração que foi prescrita.",
+    text: "Loções e tônicos para o couro cabeludo, como o minoxidil na concentração da receita.",
   },
   {
     title: "Pediátrica",
-    text: "Doses e sabores pensados para crianças, sempre a partir da receita do pediatra.",
+    text: "Dose pelo peso da criança e sabor que ela aceite tomar, a partir da receita do pediatra.",
   },
   {
     title: "Suplementação",
-    text: "Suplementos em cápsula, sachê ou pó, montados com os ativos e as quantidades da sua prescrição.",
+    text: "Cápsula, sachê ou pó, com os ativos e as quantidades da sua prescrição.",
   },
   {
     title: "Fitoterápicos",
-    text: "Extratos de plantas medicinais padronizados, em cápsulas, tinturas ou cremes, com a dosagem receitada.",
+    text: "Extratos de plantas medicinais em cápsula, tintura ou creme, na dosagem receitada.",
   },
   {
     title: "Desempenho físico",
-    text: "Fórmulas para quem treina, com ativos para energia, recuperação e ganho de massa, conforme a orientação do profissional que acompanha você.",
+    text: "Fórmulas para treino e recuperação, seguindo a orientação de quem acompanha você.",
   },
 ] as const;
 
@@ -87,17 +87,17 @@ const ATENDIMENTO = [
   {
     Icon: Stethoscope,
     title: "Atendimento farmacêutico",
-    text: "Toda receita é conferida por uma farmacêutica antes de ir para o laboratório. Ela confere a dose, a forma farmacêutica e se os ativos combinam entre si.",
+    text: "A farmacêutica lê a receita antes de o laboratório começar. Se a dose destoar ou dois ativos não combinarem, falamos com você ou com quem receitou.",
   },
   {
     Icon: Truck,
     title: "Entrega em São Paulo",
-    text: "Entregamos na cidade de São Paulo. Você acompanha o preparo pela mesma conversa de WhatsApp em que mandou a receita.",
+    text: "Entregamos na cidade de São Paulo. O acompanhamento fica na mesma conversa em que você mandou a receita.",
   },
   {
     Icon: ClipboardCheck,
     title: "Atendimento particular",
-    text: "Não atendemos por convênio ou plano de saúde. O orçamento é passado antes de começarmos a manipular.",
+    text: "Não trabalhamos com convênio nem plano de saúde. Você sabe o valor antes, e a fórmula só entra na fila depois disso.",
   },
 ] as const;
 
@@ -170,9 +170,9 @@ export default function ServicosPage() {
                   </span>
                   <h3 className="t-h3 mt-3 text-white">Entre outras</h3>
                   <p className="t-body measure mt-3 text-white/80">
-                    Não encontrou a sua receita nessas descrições? Fale com a
-                    gente antes de desistir. Manipulamos muitas outras fórmulas,
-                    e respondemos rapidinho se a sua pode ser feita aqui.
+                    A lista acima é o que mais sai, mas fazemos bem mais que
+                    isso. Se a sua receita não se encaixou em nenhum nome, mande
+                    uma foto: a gente confirma rápido se dá para fazer aqui.
                   </p>
                 </div>
                 <CtaLink
@@ -197,8 +197,8 @@ export default function ServicosPage() {
             />
             <p className="t-small text-navy-900/80">
               Não manipulamos fórmulas injetáveis, homeopáticas, de uso ocular
-              ou de baixo índice terapêutico. Se estiver em dúvida, mande uma
-              foto da receita pelo WhatsApp e a gente confirma, sem compromisso.
+              ou de baixo índice terapêutico. Na dúvida, mande a foto da receita
+              pelo WhatsApp: a gente diz na hora se dá para fazer.
             </p>
           </Reveal>
         </div>
@@ -237,7 +237,7 @@ export default function ServicosPage() {
 
       <CtaBand
         title="Tem uma receita em mãos?"
-        lead="Mande uma foto pelo WhatsApp e receba o orçamento antes de começarmos a manipular."
+        lead="Mande uma foto pelo WhatsApp. A gente responde com valor e prazo antes de começar."
         href={WHATSAPP_LINKS.servicos}
         origem="servicos"
         label="Enviar receita pelo WhatsApp"

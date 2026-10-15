@@ -70,7 +70,7 @@ export default function Hero() {
             origem="hero"
             className="btn btn-ghost-navy"
           >
-            Acessar Vitrine Virtual
+            Acessar Vitrine Online
           </CtaLink>
         </div>
 

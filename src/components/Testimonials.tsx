@@ -10,11 +10,6 @@ import Reveal from "./Reveal";
  */
 const REVIEWS = [
   {
-    name: "Cristiane F.",
-    meta: "Local Guide · 16 avaliações",
-    text: "Atendimento via WhatsApp nota 1000 com a Karina! Agilidade nas respostas e prontidão no preparo. Já é a segunda vez que peço e vou retirar. Muito prático.",
-  },
-  {
     name: "Fernanda P.",
     meta: "10 avaliações",
     text: "Sempre fui muito bem atendida. Um dos melhores preços da região de São Miguel Paulista. Moro em Guarulhos e mesmo assim só compro com eles. Peço tudo pelo WhatsApp e recebo em casa. Super indico.",
@@ -33,11 +28,6 @@ const REVIEWS = [
     name: "Ana C.",
     meta: "6 avaliações",
     text: "Farmácia nota 10! Ótimo atendimento, produtos de qualidade, não tenho o que reclamar. Do WhatsApp ao presencial, vocês estão de parabéns.",
-  },
-  {
-    name: "Rita S.",
-    meta: "5 avaliações",
-    text: "Excelente farmácia, as atendentes são muito profissionais e atenciosas, em especial a Karina, sempre pronta para bem atender.",
   },
 ] as const;
 

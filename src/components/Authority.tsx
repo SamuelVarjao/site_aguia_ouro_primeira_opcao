@@ -5,9 +5,11 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import Chalk from "./Chalk";
+import CtaLink from "./CtaLink";
 import Drawing from "./Drawing";
 import Reveal from "./Reveal";
 import { url } from "@/lib/base-path";
+import { WHATSAPP_LINKS } from "@/lib/site";
 
 const POINTS: Array<{ Icon: LucideIcon; title: string; text: string }> = [
   {
@@ -129,6 +131,19 @@ export default function Authority() {
             </div>
           </Reveal>
         </div>
+
+        {/* Quem leu como a fórmula é feita já está pronto para mandar a
+            receita: o CTA fica aqui, sem esperar o passo a passo. */}
+        <Reveal className="mt-12 flex justify-center md:mt-16">
+          <CtaLink
+            href={WHATSAPP_LINKS.autoridade}
+            event="contato_whatsapp"
+            origem="por-dentro-da-farmacia"
+            className="btn btn-gold w-full sm:w-auto"
+          >
+            Enviar minha receita
+          </CtaLink>
+        </Reveal>
       </div>
     </section>
   );

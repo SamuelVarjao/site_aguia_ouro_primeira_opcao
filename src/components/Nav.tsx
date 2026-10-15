@@ -2,18 +2,19 @@ import Link from "next/link";
 import CtaLink from "./CtaLink";
 import Logo from "./Logo";
 import { url } from "@/lib/base-path";
-import { BLOG_URL, WHATSAPP_LINKS } from "@/lib/site";
+import { BLOG_URL, WHATSAPP_LINKS, storeUrl } from "@/lib/site";
 
 const LINKS = [
   { label: "Serviços", href: "/servicos/" },
   { label: "Quem somos", href: "/quem-somos/" },
+  { label: "Blog", href: BLOG_URL },
   { label: "Contato", href: "/contato/" },
 ] as const;
 
 /**
- * Barra clara, como papel. No mobile ficam logo, Blog e o CTA: os links
- * institucionais aparecem só do tablet para cima, em caixa alta espaçada. O
- * Blog é botão (contorno) e aparece em todas as larguras.
+ * Barra clara, como papel. No mobile ficam logo, Vitrine Online e o CTA: os
+ * links institucionais (Blog entre eles) aparecem só do tablet para cima, em
+ * caixa alta espaçada.
  *
  * O data-nav é o gancho do SiteInteractions, que marca data-scrolled quando a
  * página sai do topo.
@@ -48,14 +49,14 @@ export default function Nav() {
         </nav>
 
         <div className="flex shrink-0 items-center gap-2 sm:gap-3">
-          <a
-            href={BLOG_URL}
-            data-ga-event="link_institucional"
-            data-ga-origem="navegacao:Blog"
+          <CtaLink
+            href={storeUrl("nav")}
+            event="ir_para_loja"
+            origem="navegacao"
             className="btn btn-nav btn-ghost-navy"
           >
-            Blog
-          </a>
+            Vitrine Online
+          </CtaLink>
           <CtaLink
             href={WHATSAPP_LINKS.nav}
             event="contato_whatsapp"

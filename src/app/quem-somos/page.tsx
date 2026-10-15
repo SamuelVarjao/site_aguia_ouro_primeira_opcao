@@ -267,21 +267,10 @@ export default function QuemSomosPage() {
                 delay={i * 90}
                 className="lift border border-border-subtle bg-white p-6 md:p-9"
               >
-                <div className="flex items-center gap-5 sm:gap-6">
-                  <Photo
-                    src={item.photo}
-                    alt={`Foto de ${item.name}`}
-                    hint="Foto em breve"
-                    sizes="(min-width: 640px) 144px, 112px"
-                    className="aspect-4/5 w-28 shrink-0 rounded-none shadow-none sm:w-36"
-                  />
-                  <div className="min-w-0">
-                    <h3 className="t-h2 text-[1.625rem] md:text-[1.75rem]">
-                      {item.name}
-                    </h3>
-                    <p className="t-small mt-1 text-navy-900/60">{item.crf}</p>
-                  </div>
-                </div>
+                <h3 className="t-h2 text-[1.625rem] md:text-[1.75rem]">
+                  {item.name}
+                </h3>
+                <p className="t-small mt-1 text-navy-900/60">{item.crf}</p>
                 <ul className="mt-6 flex flex-col gap-3 border-t border-border-subtle pt-6">
                   {item.formacao.map((linha) => (
                     <li key={linha} className="flex gap-3">
@@ -296,35 +285,6 @@ export default function QuemSomosPage() {
               </Reveal>
             ))}
           </ul>
-        </div>
-      </section>
-
-      {/* Equipe */}
-      <section className="py-12 md:py-24">
-        <div className="container-page">
-          <Reveal>
-            <p className="eyebrow">Balcão</p>
-            <h2 className="t-h2 measure mt-4">Equipe</h2>
-            <p className="t-lead measure mt-4 text-navy-900/80">
-              No balcão e no WhatsApp, quem atende é a equipe da farmácia. São
-              elas que avisam quando a sua fórmula fica pronta.
-            </p>
-          </Reveal>
-
-          {/* PENDENTE: fotos e bios da equipe, a caminho do cliente. */}
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-            {[1, 2, 3].map((n) => (
-              <Reveal key={n} delay={n * 80}>
-                <Photo
-                  src={null}
-                  alt=""
-                  hint="Foto em breve"
-                  sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
-                  className="aspect-4/5 w-full"
-                />
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -361,7 +321,7 @@ export default function QuemSomosPage() {
 
       <CtaBand
         title="Quer conhecer de perto?"
-        lead="Mande a sua receita pelo WhatsApp ou apareça no balcão, na Marechal Tito."
+        lead="Mande sua receita pelo WhatsApp ou venha tomar um café conosco."
         href={WHATSAPP_LINKS.quemSomos}
         origem="quem-somos"
         label="Enviar receita pelo WhatsApp"

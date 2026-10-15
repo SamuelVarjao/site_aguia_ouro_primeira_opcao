@@ -100,7 +100,7 @@ export default function PoliticaDePrivacidadePage() {
               <p className="t-body mt-3">
                 Os botões de WhatsApp abrem uma conversa direta com a nossa
                 equipe, sujeita aos termos do próprio WhatsApp. O botão
-                &quot;Vitrine Virtual&quot; leva para{" "}
+                &quot;Vitrine Online&quot; leva para{" "}
                 <a
                   href={STORE_URL}
                   target="_blank"

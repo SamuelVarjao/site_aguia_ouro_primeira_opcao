@@ -22,7 +22,7 @@ const LINKS = [
   { label: "Quem somos", href: "/quem-somos/", gaEvent: "link_institucional" },
   { label: "Blog", href: BLOG_URL, gaEvent: "link_institucional" },
   {
-    label: "Vitrine Virtual",
+    label: "Vitrine Online",
     href: storeUrl("rodape"),
     gaEvent: "ir_para_loja",
   },

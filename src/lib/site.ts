@@ -74,6 +74,9 @@ export const WHATSAPP_LINKS = {
   hero: whatsappUrl(
     "Olá! Vim pela página inicial do site e quero um orçamento para minha receita.",
   ),
+  autoridade: whatsappUrl(
+    "Olá! Li sobre o processo da farmácia no site e quero enviar minha receita.",
+  ),
   passos: whatsappUrl(
     "Olá! Segui o passo a passo do site e estou enviando minha receita.",
   ),
@@ -94,6 +97,8 @@ export const WHATSAPP_LINKS = {
   ),
 } as const;
 
-export function storeUrl(content: "hero" | "sem-receita" | "rodape"): string {
+export function storeUrl(
+  content: "hero" | "nav" | "sem-receita" | "rodape",
+): string {
   return `${STORE_URL}?utm_source=lp&utm_medium=site&utm_campaign=home&utm_content=${content}`;
 }

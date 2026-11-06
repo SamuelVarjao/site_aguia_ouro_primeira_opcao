@@ -20,12 +20,12 @@ const POINTS: Array<{ Icon: LucideIcon; title: string; text: string }> = [
   {
     Icon: FileCheck2,
     title: "Matéria-prima com laudo",
-    text: "Trabalhamos apenas com fornecedores competentes que enviam laudo de análise por lote. Ativos com selo de autenticidade, como o Verisol, chegam lacrados e são conferidos na entrada.",
+    text: "Trabalhamos apenas com fornecedores qualificados, seguindo rigorosamente as normas da Anvisa. Cada lote chega com laudo de análise e é conferido na entrada.",
   },
   {
     Icon: Scale,
     title: "Registro de cada etapa",
-    text: "Pesagem em balança calibrada e tudo anotado na ordem de manipulação. Se precisar conferir uma fórmula daqui a dois anos, o registro está guardado.",
+    text: "Cada etapa do processo tem documentação, e todo produto manipulado recebe registro de rastreabilidade. Se precisar conferir uma fórmula daqui a dois anos, está tudo guardado.",
   },
 ];
 
@@ -102,11 +102,11 @@ export default function Authority() {
                 </span>
               </p>
               <p className="t-body measure mt-8 text-white/80">
-                Antes que qualquer matéria seja pesada, a prescrição é
-                conferida. Doses, formas farmacêuticas, compatibilidade entre
-                ativos são especialidades das farmacêuticas que nem sempre o
-                médico tem na ponta da língua. Só depois a ordem de manipulação
-                vai para o laboratório.
+                Antes de qualquer procedimento, a farmacêutica confere as doses
+                e a compatibilidade entre os ativos. Se houver necessidade,
+                conversamos com o prescritor para as devidas correções. Depois
+                de pesada e manipulada, a prescrição é conferida outra vez:
+                doses, forma farmacêutica, interações, incompatibilidades.
               </p>
               <a
                 href={url("/quem-somos/")}

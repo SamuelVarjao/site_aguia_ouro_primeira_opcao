@@ -53,34 +53,30 @@ const PILARES = [
 ] as const;
 
 /**
- * `photo`: caminho em /public/img quando a foto chegar (ex.:
- * "/img/farmaceutica-midia.jpg", retrato 4:5). Enquanto for null, o cartão
- * mostra o espaço reservado.
+ * Formação no mesmo padrão nos dois currículos: "ano · curso", do mais antigo
+ * para o mais recente, sem instituição.
  */
 const FARMACEUTICAS: ReadonlyArray<{
   name: string;
   crf: string;
-  photo: string | null;
   formacao: readonly string[];
 }> = [
   {
     name: "Dra. Midiã Varjão",
-    photo: null,
     crf: "CRF-SP 44084",
     formacao: [
-      "Farmácia Clínica, Universidade Mogi das Cruzes (concluído em novembro de 2017)",
-      "Manipulação Magistral Alopática, Instituto Racine (concluído em novembro de 2010)",
-      "Farmácia Industrial, Universidade Brás Cubas, Mogi das Cruzes (concluído em julho de 2007)",
+      "2007 · Farmácia Industrial",
+      "2010 · Manipulação Magistral Alopática",
+      "2017 · Farmácia Clínica",
     ],
   },
   {
     name: "Dra. Juliana Araujo",
-    photo: null,
     crf: "CRF-SP 48533",
     formacao: [
-      "Graduação em Farmácia (2009)",
-      "Pós-graduação em Farmacologia Clínica e Farmacoterapia (2014)",
-      "Pós-graduação em Medicina Funcional Integrativa (2026)",
+      "2009 · Graduação em Farmácia",
+      "2014 · Farmacologia Clínica e Farmacoterapia",
+      "2026 · Medicina Funcional Integrativa",
     ],
   },
 ];
@@ -170,10 +166,11 @@ export default function QuemSomosPage() {
                 Onde a sua fórmula é preparada
               </h2>
               <p className="t-body measure mt-6 text-navy-900/80">
-                A receita passa pela farmacêutica responsável antes de qualquer
-                coisa ser pesada. É ela quem decide se a fórmula vai para a
-                bancada do jeito que foi pedida ou se vale uma ligação para o
-                consultório antes.
+                Antes de qualquer procedimento são conferidas as doses, a
+                compatibilidade dos ativos e a forma farmacêutica. Se houver
+                necessidade, conversamos com o prescritor para as devidas
+                correções. Depois de pesada e manipulada, a fórmula passa por
+                uma segunda conferência, e cada etapa fica documentada.
               </p>
             </Reveal>
 

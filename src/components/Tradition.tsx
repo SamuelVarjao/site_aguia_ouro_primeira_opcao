@@ -69,8 +69,8 @@ export default function Tradition() {
               Miguel Paulista, por Antônio Cesar, paranaense que trabalhava em
               farmácia desde a adolescência e chegou a São Paulo já com
               experiência de balcão. Abriu a farmácia aos 29 anos, com um
-              farmacêutico como único colaborador, para fazer as coisas do seu
-              próprio jeito, com qualidade e autenticidade.
+              farmacêutico como único colaborador, para manipular conforme a
+              legislação, com qualidade e autenticidade.
             </p>
 
             <p className="t-body measure mt-5 text-navy-900/80">

@@ -65,9 +65,9 @@ const FARMACEUTICAS: ReadonlyArray<{
     name: "Dra. Midiã Varjão",
     crf: "CRF-SP 44084",
     formacao: [
-      "2007 · Farmácia Industrial",
-      "2010 · Manipulação Magistral Alopática",
-      "2017 · Farmácia Clínica",
+      "2007 · Graduação em Farmácia",
+      "2010 · Pós-graduação em Manipulação Magistral Alopática",
+      "2017 · Pós-graduação em Farmácia Clínica",
     ],
   },
   {
@@ -75,8 +75,8 @@ const FARMACEUTICAS: ReadonlyArray<{
     crf: "CRF-SP 48533",
     formacao: [
       "2009 · Graduação em Farmácia",
-      "2014 · Farmacologia Clínica e Farmacoterapia",
-      "2026 · Medicina Funcional Integrativa",
+      "2014 · Pós-graduação em Farmacologia Clínica e Farmacoterapia",
+      "2026 · Pós-graduação em Medicina Funcional Integrativa",
     ],
   },
 ];
@@ -143,8 +143,8 @@ export default function QuemSomosPage() {
                 São Miguel Paulista, por Antônio Cesar. Paranaense, ele começou
                 a trabalhar em farmácia ainda adolescente e chegou a São Paulo
                 já com experiência de balcão. Abriu a farmácia aos 29 anos, com
-                um farmacêutico como único colaborador, para fazer as coisas do
-                seu jeito, com qualidade e autenticidade.
+                um farmacêutico como único colaborador, para manipular conforme
+                a legislação, com qualidade e autenticidade.
               </p>
               <p className="t-body measure mt-4 text-navy-900/80">
                 Passados trinta e oito anos, a farmácia segue com o mesmo sonho:
